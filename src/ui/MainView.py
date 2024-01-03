@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
         taskbar_layout = QVBoxLayout()
         for i in range(5):
             button = QPushButton()
-            button.setIcon(QIcon(f"icon{i}.png"))  # set the icon of the button
+            button.setIcon(QIcon(f"../media/icons/icon{i}.png"))  # set the icon of the button
             button.clicked.connect(lambda i=i: self.stacked_widget.setCurrentIndex(i))
             taskbar_layout.addWidget(button)
         taskbar_widget.setLayout(taskbar_layout)
