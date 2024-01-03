@@ -3,8 +3,9 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 
 class MainWindow(QMainWindow):
-    def __init__(self, on_button_clicked):
+    def __init__(self, app, on_button_clicked):
         super().__init__()
+        self.app = app
         self.resize(800, 500)
 
         # Create the stacked widget
@@ -40,8 +41,5 @@ class MainWindow(QMainWindow):
         center = rect.center()
         self.move(center.x() - self.width() // 2, center.y() - self.height() // 2)
 
-def start_app(on_button_clicked):
-    app = QApplication([])
-    window = MainWindow(on_button_clicked)
-    window.show()
-    app.exec()
+def create_main_window(app, on_button_clicked):
+    return MainWindow(app, on_button_clicked)
