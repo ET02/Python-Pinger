@@ -1,6 +1,5 @@
 import subprocess
 
-from src.logic.Observer import Observer
 
 def ping_range(start, end):
     ip_array = []
@@ -18,9 +17,7 @@ def ping_range(start, end):
                 ip_array.append(ip + " is down!")
         except subprocess.CalledProcessError:
             print(ip, 'is down!')
-        
-        Observer().update_data('ping', ip_array)
-
+            
 
 if __name__ == "__main__":
     ping_range(1, 255)

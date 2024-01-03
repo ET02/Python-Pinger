@@ -1,4 +1,5 @@
-from src.logic.MainController import setup
+from src.logic.MainController import MainController
 
 if __name__ == "__main__":
-    setup()
+    controller = MainController()
+    controller.run()

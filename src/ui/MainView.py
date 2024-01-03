@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QHBoxLayout, QWidget, QStackedWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QHBoxLayout, QWidget, QStackedWidget
 from src.ui.SideBar import SideBar
 from src.ui.PageContainer import PageContainer
 from src.ui.pages.PingPage import PingPage
@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
         center = rect.center()
         self.move(center.x() - self.width() // 2, center.y() - self.height() // 2)
 
-        
+
 
         # Create an instance of SideBar and add it to the layout
         sidebar = SideBar()
