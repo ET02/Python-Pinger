@@ -6,17 +6,25 @@ class PingPage(QWidget):
         self.name = name
 
         # Create a QVBoxLayout instance
-        layout = QVBoxLayout()
+        self.layout = QVBoxLayout()
 
         # Create a QListWidget instance
-        list_widget = QListWidget()
+        self.list_widget = QListWidget()
 
         # Add items to the list widget
-        for item in items:
-            list_widget.addItem(QListWidgetItem(item))
+        self.update_items(items)
 
         # Add the list widget to the layout
-        layout.addWidget(list_widget)
+        self.layout.addWidget(self.list_widget)
 
         # Set the layout of the page
-        self.setLayout(layout)
+        self.setLayout(self.layout)
+
+    def update_items(self, items):
+        """Update the list widget with new items."""
+        # Clear the list widget
+        self.list_widget.clear()
+
+        # Add new items to the list widget
+        for item in items:
+            self.list_widget.addItem(QListWidgetItem(item))
