@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QToolButton
-from src.logic.UiLogic import on_sidebar_button_clicked
+from src.logic.UiLogic import UiLogic
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 import os
@@ -8,6 +8,7 @@ import os
 class SideBar(QWidget):
     def __init__(self):
         super().__init__()
+        
 
         self.layout = QVBoxLayout()
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)  # align the buttons to the top
@@ -33,6 +34,6 @@ class SideBar(QWidget):
 
     def add_buttons(self):
         # Create the icon buttons
-        self.add_button("Ping", "media/icons/icon0.png", lambda: on_sidebar_button_clicked(1))
-        self.add_button("Nmap", "media/icons/icon2.png", lambda: on_sidebar_button_clicked(2))
-        self.add_button("Go Buster", "media/icons/icon3.png", lambda: on_sidebar_button_clicked(3))
+        self.add_button("Ping", "media/icons/icon0.png", lambda: UiLogic().on_sidebar_button_clicked(1))
+        self.add_button("Nmap", "media/icons/icon2.png", lambda: UiLogic().on_sidebar_button_clicked(2))
+        self.add_button("Go Buster", "media/icons/icon3.png", lambda: UiLogic().on_sidebar_button_clicked(3))

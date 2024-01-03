@@ -12,8 +12,8 @@ class PageContainer(QWidget):
         # Create a QStackedWidget
         self.pages = QStackedWidget()
 
-        self.ping_page = PingPage("ping", ["Ping 1", "Ping 2", "Ping 3"])
-        self.nmap_page = PingPage("Nmap", ["Map 1", "Map 2", "Map 3"])
+        self.ping_page = PingPage("ping")
+        self.nmap_page = PingPage("Nmap")
 
         self.pages.addWidget(self.ping_page)
         self.pages.addWidget(self.nmap_page)
