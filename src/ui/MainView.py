@@ -1,7 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QDockWidget, QVBoxLayout, QWidget, QStackedWidget
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QIcon
-
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QHBoxLayout, QWidget, QStackedWidget
 from src.ui.SideBar import SideBar
 
 class MainWindow(QMainWindow):
@@ -13,9 +10,16 @@ class MainWindow(QMainWindow):
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         
-        self.layout = QVBoxLayout()
+        self.layout = QHBoxLayout()
         self.central_widget.setLayout(self.layout)
         
+        
+        # Create an instance of SideBar and add it to the layout
+        sidebar = SideBar()
+        self.layout.addWidget(sidebar)
+        sidebar.add_buttons()
+
+
         # Create the stacked widget
         self.stacked_widget = QStackedWidget()
 
@@ -27,12 +31,6 @@ class MainWindow(QMainWindow):
         # Add the stacked widget to the layout
         self.layout.addWidget(self.stacked_widget)
 
-
-
-
-        # Create an instance of SideBar and add it to the layout
-        sidebar = SideBar()
-        self.layout.addWidget(sidebar)
 
         # Center the window
         screen = QApplication.primaryScreen()
