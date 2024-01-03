@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QStackedWidget, QVBoxLayout
+from src.logic.Observer import Observer
 from src.ui.pages.PingPage import PingPage
 
 
@@ -12,12 +13,14 @@ class PageContainer(QWidget):
         # Create a QStackedWidget
         self.pages = QStackedWidget()
 
-        self.ping_page = PingPage("Ping", ["Item 1", "Item 2", "Item 3"])
+        self.ping_page = PingPage("ping", Observer().data['ping'])
         self.nmap_page = PingPage("Nmap", ["Map 1", "Map 2", "Map 3"])
 
         self.pages.addWidget(self.ping_page)
         self.pages.addWidget(self.nmap_page)
 
+        Observer().add_observer(self.ping_page)
+        
         # Add the QStackedWidget to the layout
         layout.addWidget(self.pages)
 

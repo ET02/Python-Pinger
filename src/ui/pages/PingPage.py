@@ -12,7 +12,7 @@ class PingPage(QWidget):
         self.list_widget = QListWidget()
 
         # Add items to the list widget
-        self.update_items(items)
+        self.update_items("ping", items)
 
         # Add the list widget to the layout
         self.layout.addWidget(self.list_widget)
@@ -20,11 +20,12 @@ class PingPage(QWidget):
         # Set the layout of the page
         self.setLayout(self.layout)
 
-    def update_items(self, items):
+    def update_items(self, key, items):
         """Update the list widget with new items."""
-        # Clear the list widget
-        self.list_widget.clear()
+        if key == self.name:
+            # Clear the list widget
+            self.list_widget.clear()
 
-        # Add new items to the list widget
-        for item in items:
-            self.list_widget.addItem(QListWidgetItem(item))
+            # Add new items to the list widget
+            for item in items:
+                self.list_widget.addItem(QListWidgetItem(item))
