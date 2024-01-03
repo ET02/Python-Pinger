@@ -2,12 +2,20 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QDockWidget,
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 
+from src.ui.SideBar import SideBar
+
 class MainWindow(QMainWindow):
-    def __init__(self, app, on_button_clicked):
+    def __init__(self, app):
         super().__init__()
         self.app = app
         self.resize(800, 500)
 
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
+        
+        self.layout = QVBoxLayout()
+        self.central_widget.setLayout(self.layout)
+        
         # Create the stacked widget
         self.stacked_widget = QStackedWidget()
 
@@ -16,24 +24,15 @@ class MainWindow(QMainWindow):
             button = QPushButton(f"Content {i}")
             self.stacked_widget.addWidget(button)
 
-        # Create the taskbar
-        self.taskbar = QDockWidget("Taskbar")
-        self.taskbar.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)  # disable all dockable features
-        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.taskbar)
+        # Add the stacked widget to the layout
+        self.layout.addWidget(self.stacked_widget)
 
-        # Create some buttons for the taskbar
-        taskbar_widget = QWidget()
-        taskbar_layout = QVBoxLayout()
-        for i in range(4):
-            button = QPushButton()
-            button.setIcon(QIcon(f"../../media/icons/icon{i}.png"))  # set the icon of the button
-            button.clicked.connect(lambda i=i: self.stacked_widget.setCurrentIndex(i))
-            taskbar_layout.addWidget(button)
-        taskbar_widget.setLayout(taskbar_layout)
-        self.taskbar.setWidget(taskbar_widget)
 
-        # Set the stacked widget as the central widget
-        self.setCentralWidget(self.stacked_widget)
+
+
+        # Create an instance of SideBar and add it to the layout
+        sidebar = SideBar()
+        self.layout.addWidget(sidebar)
 
         # Center the window
         screen = QApplication.primaryScreen()
@@ -41,5 +40,6 @@ class MainWindow(QMainWindow):
         center = rect.center()
         self.move(center.x() - self.width() // 2, center.y() - self.height() // 2)
 
-def create_main_window(app, on_button_clicked):
-    return MainWindow(app, on_button_clicked)
+def create_main_window(app):
+    window = MainWindow(app)
+    return window
