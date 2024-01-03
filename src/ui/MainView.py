@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QDockWidget, QVBoxLayout, QWidget, QStackedWidget
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QIcon
 
 class MainWindow(QMainWindow):
     def __init__(self, on_button_clicked):
@@ -22,9 +23,9 @@ class MainWindow(QMainWindow):
         # Create some buttons for the taskbar
         taskbar_widget = QWidget()
         taskbar_layout = QVBoxLayout()
-        for i in range(5):
+        for i in range(4):
             button = QPushButton()
-            button.setIcon(QIcon(f"../media/icons/icon{i}.png"))  # set the icon of the button
+            button.setIcon(QIcon(f"../../media/icons/icon{i}.png"))  # set the icon of the button
             button.clicked.connect(lambda i=i: self.stacked_widget.setCurrentIndex(i))
             taskbar_layout.addWidget(button)
         taskbar_widget.setLayout(taskbar_layout)
